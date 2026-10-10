@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Линии связи и телекоммуникации — LMS Дистанционного курса</title>
-  <meta name="description" content="Электронный учебно-методический комплекс и LMS-оболочка дисциплины «Линии связи и телекоммуникации». 12 лекций с интерактивной навигацией.">
+  <title>Линии связи и телекоммуникации — Университетский LMS-портал</title>
+  <meta name="description" content="Электронный учебно-методический комплекс и LMS-оболочка дисциплины «Линии связи». Лекции, лабораторные работы с калькулятором, контрольная работа и экзамен.">
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --bg-base: #f8fafc;
       --bg-surface: #ffffff;
-      --bg-sidebar: #0f172a;
-      --bg-sidebar-hover: #1e293b;
-      --bg-sidebar-active: #2563eb;
+      --sidebar-bg: #064e3b;
+      --sidebar-hover: #065f46;
+      --sidebar-active: #047857;
+      --sidebar-border: #043c2e;
+      --sidebar-text: #ecfdf5;
+      --sidebar-text-dim: #a7f3d0;
+      --primary: #059669;
+      --primary-hover: #047857;
+      --primary-dark: #064e3b;
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --text-sidebar: #e2e8f0;
-      --text-sidebar-dim: #94a3b8;
       --border-color: #e2e8f0;
-      --border-dark: #334155;
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --sidebar-width: 380px;
-      --header-height: 70px;
+      --header-height: 64px;
+      --sidebar-width: 340px;
     }
 
     * {
@@ -41,17 +42,17 @@
       flex-direction: column;
     }
 
-    /* Верхняя шапка (LMS Header) */
+    /* ШАПКА ПОРТАЛА (Header) */
     header.lms-header {
       height: var(--header-height);
-      background-color: #ffffff;
+      background: #ffffff;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 24px;
       z-index: 30;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
       flex-shrink: 0;
     }
 
@@ -71,30 +72,30 @@
       color: var(--text-main);
     }
 
-    .course-badge {
-      display: inline-flex;
+    .course-logo-badge {
+      width: 38px;
+      height: 38px;
+      background: #064e3b;
+      color: #ffffff;
+      border-radius: 8px;
+      display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(6, 78, 59, 0.2);
     }
 
-    .course-title-group h1 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #0f172a;
+    .course-title-block h1 {
+      font-size: 17px;
+      font-weight: 800;
+      color: #064e3b;
       line-height: 1.2;
+      letter-spacing: -0.01em;
     }
 
-    .course-title-group p {
-      font-size: 12px;
+    .course-title-block p {
+      font-size: 11px;
       color: var(--text-muted);
       margin-top: 2px;
     }
@@ -102,61 +103,53 @@
     .header-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .progress-widget {
+    .student-badge-btn {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: #f1f5f9;
+      gap: 10px;
       padding: 6px 14px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
       border-radius: 8px;
-      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: left;
     }
 
-    .progress-text {
-      font-size: 12px;
-      font-weight: 600;
-      color: #334155;
+    .student-badge-btn:hover {
+      background: #dcfce7;
+      border-color: #86efac;
     }
 
-    .progress-bar-bg {
-      width: 100px;
-      height: 7px;
-      background: #cbd5e1;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: #2563eb;
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-
-    .url-mode-dropdown-wrapper {
+    .student-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: #059669;
+      color: #ffffff;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-muted);
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
     }
 
-    .url-mode-select {
+    .student-meta-name {
       font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--border-color);
-      background: #ffffff;
-      color: #0f172a;
-      cursor: pointer;
-      font-weight: 500;
-      outline: none;
+      font-weight: 700;
+      color: #064e3b;
+      line-height: 1.2;
     }
 
-    /* Основная сетка (Sidebar + Content) */
+    .student-meta-group {
+      font-size: 11px;
+      color: #047857;
+    }
+
+    /* ОСНОВНОЙ МАКЕТ */
     .lms-layout {
       display: flex;
       flex: 1;
@@ -165,237 +158,161 @@
       position: relative;
     }
 
-    /* Фиксированное боковое меню (Sidebar) */
+    /* ТЕМНО-ЗЕЛЕНЫЙ САЙДБАР (#064e3b) */
     aside.lms-sidebar {
       width: var(--sidebar-width);
-      background-color: var(--bg-sidebar);
-      color: var(--text-sidebar);
+      background-color: var(--sidebar-bg);
+      color: var(--sidebar-text);
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
-      border-right: 1px solid var(--border-dark);
+      border-right: 1px solid var(--sidebar-border);
       overflow: hidden;
       transition: transform 0.25s ease;
       z-index: 20;
     }
 
-    .sidebar-header {
-      padding: 16px 18px;
-      border-bottom: 1px solid var(--border-dark);
-      background: #090e1a;
-    }
-
-    .sidebar-search-box {
-      position: relative;
-      margin-top: 8px;
-    }
-
-    .sidebar-search-input {
-      width: 100%;
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #f8fafc;
-      padding: 8px 12px 8px 34px;
-      border-radius: 6px;
-      font-size: 13px;
-      outline: none;
-    }
-
-    .sidebar-search-input::placeholder {
-      color: #64748b;
-    }
-
-    .sidebar-search-input:focus {
-      border-color: #3b82f6;
-      background: #0f172a;
-    }
-
-    .search-icon-svg {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #94a3b8;
-      pointer-events: none;
-    }
-
-    .lecture-list-container {
+    .sidebar-nav-scroll {
       flex: 1;
       overflow-y: auto;
-      padding: 10px 10px 20px 10px;
+      padding: 12px 10px 24px 10px;
     }
 
-    .lecture-list-container::-webkit-scrollbar {
+    .sidebar-nav-scroll::-webkit-scrollbar {
       width: 6px;
     }
 
-    .lecture-list-container::-webkit-scrollbar-thumb {
-      background: #334155;
+    .sidebar-nav-scroll::-webkit-scrollbar-thumb {
+      background: #043c2e;
       border-radius: 3px;
     }
 
-    .lecture-item {
+    .nav-section-title {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--sidebar-text-dim);
+      padding: 14px 12px 6px 12px;
       display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
       border-radius: 8px;
       cursor: pointer;
-      margin-bottom: 6px;
+      color: var(--sidebar-text);
+      font-size: 12.5px;
+      font-weight: 500;
+      margin-bottom: 2px;
       transition: all 0.15s ease;
-      border: 1px solid transparent;
       text-decoration: none;
-      color: var(--text-sidebar);
+      border: 1px solid transparent;
+      user-select: none;
     }
 
-    .lecture-item:hover {
-      background: var(--bg-sidebar-hover);
-      border-color: #334155;
-    }
-
-    .lecture-item.active {
-      background: #1e3a8a;
-      border-color: #3b82f6;
+    .nav-item:hover {
+      background-color: var(--sidebar-hover);
       color: #ffffff;
     }
 
-    .lecture-item-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      background: #1e293b;
-      color: #94a3b8;
+    .nav-item.active {
+      background-color: var(--sidebar-active);
+      color: #ffffff;
+      font-weight: 700;
+      border-color: #34d399;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-item-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       flex-shrink: 0;
     }
 
-    .lecture-item.active .lecture-item-num {
-      background: #2563eb;
-      color: #ffffff;
+    .nav-item.active .nav-item-badge {
+      background: #ffffff;
+      color: #064e3b;
     }
 
-    .lecture-item-info {
+    .nav-item-text {
       flex: 1;
       min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    .lecture-item-title {
-      font-size: 13.5px;
-      font-weight: 600;
-      line-height: 1.35;
-      margin-bottom: 3px;
-    }
-
-    .lecture-item-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .nav-lock-icon {
       font-size: 11px;
-      color: var(--text-sidebar-dim);
+      opacity: 0.8;
+      margin-left: auto;
     }
 
-    .lecture-item.active .lecture-item-meta {
-      color: #bfdbfe;
-    }
-
-    .check-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #475569;
-      padding: 4px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: color 0.15s ease;
-    }
-
-    .check-btn:hover {
-      color: #cbd5e1;
-    }
-
-    .check-btn.completed {
-      color: #10b981;
-    }
-
-    .sidebar-footer {
-      padding: 12px 18px;
-      border-top: 1px solid var(--border-dark);
-      background: #090e1a;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 11px;
-      color: #64748b;
-    }
-
-    .sidebar-footer a {
-      color: #60a5fa;
-      text-decoration: none;
-    }
-
-    /* Главная рабочая область (Iframe Workspace) */
-    main.lms-main-content {
+    main.lms-main {
       flex: 1;
       display: flex;
       flex-direction: column;
       height: 100%;
-      background: #ffffff;
+      background: var(--bg-base);
       overflow: hidden;
       position: relative;
     }
 
-    .lecture-toolbar {
-      height: 52px;
-      background: #f8fafc;
+    .content-toolbar {
+      height: 48px;
+      background: #ffffff;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 20px;
       flex-shrink: 0;
-      gap: 16px;
     }
 
-    .toolbar-lecture-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .current-badge {
-      background: #e2e8f0;
-      color: #1e293b;
-      font-size: 11px;
+    .toolbar-title {
+      font-size: 13px;
       font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-
-    .current-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #0f172a;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .toolbar-actions {
+      color: #064e3b;
       display: flex;
       align-items: center;
       gap: 8px;
-      flex-shrink: 0;
     }
 
-    .btn {
+    .btn-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      background-color: var(--primary);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn-emerald:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -403,562 +320,1168 @@
       border-radius: 6px;
       font-size: 12px;
       font-weight: 600;
-      cursor: pointer;
-      border: 1px solid var(--border-color);
-      background: #ffffff;
+      background-color: #ffffff;
       color: #334155;
-      transition: all 0.15s ease;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
       text-decoration: none;
     }
 
-    .btn:hover {
-      background: #f1f5f9;
-      color: #0f172a;
+    .btn-secondary:hover {
+      background-color: #f1f5f9;
     }
 
-    .btn-primary {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-hover);
-      color: #ffffff;
-    }
-
-    .btn-icon-only {
-      padding: 6px;
-    }
-
-    .source-path-bar {
-      background: #f1f5f9;
-      border-bottom: 1px solid var(--border-color);
-      padding: 6px 20px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 11px;
-      color: #475569;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      flex-shrink: 0;
-    }
-
-    .path-label {
-      color: #64748b;
-      margin-right: 6px;
-    }
-
-    .path-value {
-      color: #0f172a;
-      font-weight: 600;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .iframe-wrapper {
+    .view-container {
       flex: 1;
-      position: relative;
+      height: calc(100% - 48px);
       width: 100%;
-      height: 100%;
-      background: #ffffff;
+      display: none;
       overflow: hidden;
     }
 
-    iframe#lectureFrame {
+    .view-container.active {
+      display: flex;
+    }
+
+    iframe.full-frame {
       width: 100%;
       height: 100%;
       border: none;
-      display: block;
       background: #ffffff;
     }
 
-    .iframe-loader {
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(2px);
+    /* СПЛИТ-ЭКРАН ДЛЯ ЛАБОРАТОРНЫХ И ПРАКТИКИ (60% / 40%) */
+    .split-layout {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+    }
+
+    .split-left {
+      width: 60%;
+      height: 100%;
+      border-right: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
+      background: #ffffff;
+    }
+
+    .split-right {
+      width: 40%;
+      height: 100%;
+      background: #f8fafc;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .split-toolbar {
+      height: 40px;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .card-panel {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .card-header h4 {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #064e3b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .calc-input-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    .calc-input-row label {
+      color: #334155;
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .calc-input-field {
+      width: 110px;
+      padding: 6px 8px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 12px;
+      text-align: right;
+      outline: none;
+    }
+
+    .calc-input-field:focus {
+      border-color: var(--primary);
+    }
+
+    .calc-unit {
+      width: 38px;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .calc-result-box {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      display: none;
+      line-height: 1.4;
+    }
+
+    .calc-result-box.correct {
+      display: block;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+    }
+
+    .calc-result-box.wrong {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+
+    .quiz-question-box {
+      margin-bottom: 16px;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+
+    .quiz-q-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .quiz-option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 7px 10px;
+      margin-bottom: 5px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      font-size: 11.5px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      color: #334155;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .quiz-option-btn:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .quiz-option-btn.selected-correct {
+      background: #ecfdf5 !important;
+      border-color: #10b981 !important;
+      color: #065f46 !important;
+      font-weight: 600;
+    }
+
+    .quiz-option-btn.selected-wrong {
+      background: #fef2f2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b !important;
+    }
+
+    .quiz-feedback {
+      font-size: 11px;
+      margin-top: 6px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(2px);
+      z-index: 100;
+      display: none;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      z-index: 10;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
+      padding: 16px;
     }
 
-    .iframe-loader.active {
-      opacity: 1;
-      pointer-events: auto;
+    .modal-overlay.active {
+      display: flex;
     }
 
-    .spinner {
-      width: 36px;
-      height: 36px;
-      border: 3px solid #e2e8f0;
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+    .modal-box {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      animation: popIn 0.2s ease-out;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    @keyframes popIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
-    /* Полноэкранный режим */
-    .is-fullscreen aside.lms-sidebar,
-    .is-fullscreen header.lms-header {
-      display: none !important;
+    .modal-header {
+      background: #064e3b;
+      color: #ffffff;
+      padding: 20px;
+      position: relative;
     }
 
-    .is-fullscreen .lms-layout {
-      height: 100vh !important;
+    .modal-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .modal-header p {
+      font-size: 11px;
+      color: #a7f3d0;
+      margin-top: 2px;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-form-group {
+      margin-bottom: 14px;
+    }
+
+    .modal-form-group label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 5px;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+      background: #f8fafc;
+    }
+
+    .modal-input:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+    }
+
+    .modal-error {
+      font-size: 11px;
+      color: #dc2626;
+      background: #fef2f2;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      display: none;
     }
 
     @media (max-width: 900px) {
-      .menu-toggle-btn {
-        display: block;
-      }
-
+      .menu-toggle-btn { display: block; }
       aside.lms-sidebar {
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         transform: translateX(-100%);
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
+        box-shadow: 6px 0 24px rgba(0, 0, 0, 0.3);
       }
-
       aside.lms-sidebar.open {
         transform: translateX(0);
       }
-
-      .course-title-group p {
-        display: none;
+      .split-layout {
+        flex-direction: column;
       }
+      .split-left {
+        width: 100%;
+        height: 50%;
+      }
+      .split-right {
+        width: 100%;
+        height: 50%;
+      }
+      .course-title-block p { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ШАПКА КУРСА -->
+  <!-- ШАПКА САЙТА (HEADER) -->
   <header class="lms-header">
     <div class="header-left">
-      <button id="sidebarToggleBtn" class="menu-toggle-btn" title="Меню лекций">
+      <button id="sidebarToggleBtn" class="menu-toggle-btn" title="Меню курсов">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
-      <div class="course-badge">Курс</div>
-      <div class="course-title-group">
-        <h1>Линии связи и телекоммуникации</h1>
-        <p>Кафедра инфокоммуникационных систем и сетей связи · 12 тем лекций</p>
+      <div class="course-logo-badge">ЛС</div>
+      <div class="course-title-block">
+        <h1>Линии связи</h1>
+        <p>Дистанционный образовательный портал · Кафедра инфокоммуникаций</p>
       </div>
     </div>
 
     <div class="header-right">
-      <!-- Прогресс прохождения курса -->
-      <div class="progress-widget" title="Ваш прогресс изучения курса">
-        <div class="progress-text" id="progressText">0 / 12 изучено (0%)</div>
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="progressBar"></div>
+      <button class="student-badge-btn" id="openAuthModalBtn" title="Нажмите для смены профиля">
+        <div class="student-avatar" id="headerStudentAvatar">?</div>
+        <div>
+          <div class="student-meta-name" id="headerStudentName">Авторизация</div>
+          <div class="student-meta-group" id="headerStudentGroup">Нажмите чтобы указать ФИО</div>
         </div>
-      </div>
-
-      <!-- Переключатель режима адресации -->
-      <div class="url-mode-dropdown-wrapper">
-        <label for="urlModeSelect">Источник:</label>
-        <select id="urlModeSelect" class="url-mode-select" title="Выберите тип ссылок для iframe">
-          <option value="local" selected>Локальный (file:///C:/Users/...)</option>
-          <option value="relative">Относительный (./Lector.../index...)</option>
-        </select>
-      </div>
+      </button>
     </div>
   </header>
 
   <!-- ОСНОВНОЙ МАКЕТ -->
   <div class="lms-layout">
     
-    <!-- ФИКСИРОВАННОЕ БОКОВОЕ МЕНЮ (SIDEBAR) -->
     <aside class="lms-sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #94a3b8; letter-spacing: 0.05em;">Темы лекций (12)</span>
-          <button id="resetProgressBtn" style="background: none; border: none; font-size: 11px; color: #64748b; cursor: pointer;" title="Сбросить отметки">Сброс</button>
+      <nav class="sidebar-nav-scroll">
+        
+        <div class="nav-section-title">
+          <span>Лекции курса (1–12)</span>
         </div>
-        <div class="sidebar-search-box">
-          <svg class="search-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" id="searchInput" class="sidebar-search-input" placeholder="Поиск по лекциям...">
+        <div id="lecturesNavList"></div>
+
+        <div class="nav-section-title" style="margin-top: 10px;">
+          <span>Дополнительные материалы</span>
         </div>
-      </div>
+        <div class="nav-item" data-view="additional">
+          <div class="nav-item-badge">📚</div>
+          <span class="nav-item-text">Электронные пособия (PDF)</span>
+        </div>
 
-      <!-- Список всех 12 лекций -->
-      <nav class="lecture-list-container" id="lectureList"></nav>
+        <div class="nav-section-title" style="margin-top: 10px;">
+          <span>Лабораторный практикум</span>
+        </div>
+        <div id="labsNavList"></div>
 
-      <div class="sidebar-footer">
-        <span>Репозиторий курса</span>
-        <a href="https://github.com/alexbog122022-pixel/Kurs-lector-Linia.git" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-      </div>
+        <div class="nav-section-title" style="margin-top: 10px;">
+          <span>Контрольная работа</span>
+        </div>
+        <div class="nav-item" data-view="kr">
+          <div class="nav-item-badge">📝</div>
+          <span class="nav-item-text">Контрольная работа (КР)</span>
+        </div>
+
+        <div class="nav-section-title" style="margin-top: 10px;">
+          <span>Итоговая аттестация</span>
+        </div>
+        <div class="nav-item" data-view="exam" id="examNavItem">
+          <div class="nav-item-badge">🎓</div>
+          <span class="nav-item-text">Экзамен (Итоговый тест)</span>
+          <span class="nav-lock-icon" id="examLockIcon">🔒</span>
+        </div>
+
+      </nav>
     </aside>
 
-    <!-- ОСНОВНАЯ ОБЛАСТЬ (IFRAME WORKSPACE) -->
-    <main class="lms-main-content">
+    <main class="lms-main">
       
-      <!-- Панель управления лекцией -->
-      <div class="lecture-toolbar">
-        <div class="toolbar-lecture-meta">
-          <span class="current-badge" id="currentNumBadge">Тема 1</span>
-          <span class="current-title" id="currentTitleText">Загрузка...</span>
+      <div class="content-toolbar">
+        <div class="toolbar-title" id="contentToolbarTitle">
+          <span>Тема 1. Задачи вуза и введение в инфокоммуникации</span>
         </div>
+        <div id="toolbarRightActions"></div>
+      </div>
 
-        <div class="toolbar-actions">
-          <button class="btn" id="markCompleteBtn" title="Отметить лекцию как изученную">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
-            <span id="markCompleteBtnText">Отметить изученной</span>
-          </button>
-          <button class="btn" id="prevBtn" title="Предыдущая тема (Стрелка влево)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            Назад
-          </button>
-          <button class="btn" id="nextBtn" title="Следующая тема (Стрелка вправо)">
-            Вперед
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
-          <button class="btn btn-icon-only" id="reloadBtn" title="Перезагрузить страницу лекции">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-          </button>
-          <a class="btn btn-icon-only" id="openExternalBtn" target="_blank" title="Открыть лекцию в новой вкладке">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-          </a>
-          <button class="btn btn-icon-only" id="fullscreenBtn" title="Полноэкранный режим (Esc для выхода)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
-          </button>
+      <!-- ВИД 1: ЛЕКЦИИ (IFRAME) -->
+      <div class="view-container active" id="lectureViewContainer">
+        <iframe class="full-frame" id="lectureFrame" title="Контент лекции" src="./Lector1_zadachi_vuza/index1.html"></iframe>
+      </div>
+
+      <!-- ВИД 2: СПЛИТ-ЭКРАН ДЛЯ ЛАБОРАТОРНЫХ И ПРАКТИКИ (60% / 40%) -->
+      <div class="view-container" id="labSplitViewContainer">
+        <div class="split-layout">
+          
+          <div class="split-left">
+            <div class="split-toolbar">
+              <span id="labPdfTitle">L1.pdf</span>
+              <div style="display: flex; gap: 8px;">
+                <a id="labPdfExternalBtn" href="#" target="_blank" class="btn-secondary" style="padding: 3px 8px; font-size: 11px;">Открыть вкладку ↗</a>
+                <a id="labPdfDownloadBtn" href="#" download class="btn-emerald" style="padding: 3px 10px; font-size: 11px;">Скачать PDF</a>
+              </div>
+            </div>
+            <iframe id="labPdfFrame" class="full-frame" src="about:blank"></iframe>
+          </div>
+
+          <div class="split-right">
+            
+            <div class="card-panel">
+              <div class="card-header">
+                <h4 id="calcPanelTitle">Инженерный калькулятор</h4>
+                <span style="font-size: 10px; background: #ecfdf5; color: #047857; font-weight: 700; padding: 2px 6px; border-radius: 4px;">Допуск ±2.5%</span>
+              </div>
+              <p id="calcPanelDesc" style="font-size: 11.5px; color: #475569; margin-bottom: 12px; line-height: 1.4;"></p>
+
+              <div id="calcFieldsContainer"></div>
+
+              <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #f1f5f9;">
+                <label style="font-size: 11.5px; font-weight: 700; color: #064e3b; display: block; margin-bottom: 6px;">
+                  Ваш рассчитанный результат:
+                </label>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" id="studentCalcInput" class="modal-input" placeholder="Введите число..." style="font-family: monospace; font-size: 13px;">
+                  <button id="checkCalcBtn" class="btn-emerald" style="flex-shrink: 0;">Проверить расчет</button>
+                </div>
+              </div>
+
+              <div id="calcStatusBox" class="calc-result-box"></div>
+
+              <div style="margin-top: 10px;">
+                <button id="toggleFormulaBtn" style="background: none; border: none; font-size: 11px; color: #059669; font-weight: 600; cursor: pointer;">
+                  Формула для расчета ▼
+                </button>
+                <div id="formulaBox" style="display: none; margin-top: 6px; padding: 8px; background: #064e3b; color: #6ee7b7; font-family: monospace; font-size: 11px; border-radius: 6px;"></div>
+              </div>
+            </div>
+
+            <div class="card-panel">
+              <div class="card-header">
+                <h4>Контрольные вопросы</h4>
+                <span style="font-size: 10px; color: #64748b;">Самопроверка</span>
+              </div>
+              <div id="quizContainer"></div>
+            </div>
+
+          </div>
+
         </div>
       </div>
 
-      <!-- Строка с адресом текущего источника -->
-      <div class="source-path-bar">
-        <div>
-          <span class="path-label">Источник iframe:</span>
-          <span class="path-value" id="currentUrlText"></span>
+      <!-- ВИД 3: ДОПОЛНИТЕЛЬНЫЕ МАТЕРИАЛЫ -->
+      <div class="view-container" id="additionalViewContainer">
+        <div class="split-layout">
+          <div class="split-left">
+            <div class="split-toolbar">
+              <span id="additionalPdfTitle">Lector_comm.pdf</span>
+              <div style="display: flex; gap: 8px;">
+                <a id="additionalPdfExternalBtn" href="#" target="_blank" class="btn-secondary" style="padding: 3px 8px; font-size: 11px;">В новой вкладке ↗</a>
+                <a id="additionalPdfDownloadBtn" href="#" download class="btn-emerald" style="padding: 3px 10px; font-size: 11px;">Скачать PDF</a>
+              </div>
+            </div>
+            <iframe id="additionalPdfFrame" class="full-frame" src="about:blank"></iframe>
+          </div>
+          <div class="split-right" style="gap: 14px;">
+            <div class="card-panel">
+              <h3 style="font-size: 15px; font-weight: 700; color: #064e3b; margin-bottom: 6px;">Учебные материалы для скачивания</h3>
+              <p style="font-size: 12px; color: #64748b; line-height: 1.4;">
+                Официальные методические пособия для самостоятельной работы студентов и углубленного изучения телекоммуникаций.
+              </p>
+            </div>
+            <div id="additionalListCards" style="display: flex; flex-direction: column; gap: 10px;"></div>
+          </div>
         </div>
-        <span style="color: #94a3b8; font-size: 10px;">Мгновенная подгрузка без перезагрузки интерфейса</span>
       </div>
 
-      <!-- Контейнер Iframe -->
-      <div class="iframe-wrapper">
-        <div class="iframe-loader" id="iframeLoader">
-          <div class="spinner"></div>
-          <span style="font-size: 13px; color: #475569; font-weight: 500;">Загрузка лекции...</span>
+      <!-- ВИД 4: КОНТРОЛЬНАЯ РАБОТА -->
+      <div class="view-container" id="krViewContainer">
+        <div class="split-layout">
+          <div class="split-left">
+            <div class="split-toolbar">
+              <span id="krPdfTitle">PRIMER_KR.pdf</span>
+              <div style="display: flex; gap: 8px;">
+                <a id="krPdfExternalBtn" href="#" target="_blank" class="btn-secondary" style="padding: 3px 8px; font-size: 11px;">В новой вкладке ↗</a>
+                <a id="krPdfDownloadBtn" href="#" download class="btn-emerald" style="padding: 3px 10px; font-size: 11px;">Скачать PDF</a>
+              </div>
+            </div>
+            <iframe id="krPdfFrame" class="full-frame" src="about:blank"></iframe>
+          </div>
+          <div class="split-right" style="gap: 14px;">
+            <div class="card-panel" style="background: #064e3b; color: #ffffff; border-color: #043c2e;">
+              <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #a7f3d0; margin-bottom: 4px;">
+                ⚠️ Строгий регламент сдачи
+              </div>
+              <h3 style="font-size: 14px; font-weight: 800; line-height: 1.35; margin-bottom: 8px; color: #ffffff;">
+                «Выполненные контрольные работы сдавайте строго через личный кабинет вашего ВУЗа».
+              </h3>
+              <p style="font-size: 11.5px; color: #ecfdf5; line-height: 1.45;">
+                Проверка правильности расчетов и итоговая аттестация проводятся исключительно преподавателем через личный кабинет электронной образовательной среды университета.
+              </p>
+            </div>
+
+            <div class="card-panel">
+              <h4 style="font-size: 13px; font-weight: 700; color: #064e3b; margin-bottom: 10px;">Материалы и задания КР:</h4>
+              <div id="krListCards" style="display: flex; flex-direction: column; gap: 8px;"></div>
+            </div>
+          </div>
         </div>
-        <iframe id="lectureFrame" title="Контент лекции" src="about:blank"></iframe>
+      </div>
+
+      <!-- ВИД 5: ЭКЗАМЕН -->
+      <div class="view-container" id="examViewContainer">
+        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+          <div class="split-toolbar" style="background: #064e3b; color: #ffffff; border-bottom: 1px solid #043c2e;">
+            <span style="font-weight: 700;">Итоговый экзамен: Комплексное тестирование курса</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="https://forms.gle/HSqLZmvRWAeVeZsq9" target="_blank" class="btn-secondary" style="padding: 3px 8px; font-size: 11px;">Открыть Google Форму отдельно ↗</a>
+              <button id="lockExamBtn" class="btn-emerald" style="padding: 3px 10px; font-size: 11px;">Заблокировать раздел</button>
+            </div>
+          </div>
+          <iframe id="examFrame" class="full-frame" src="about:blank"></iframe>
+        </div>
       </div>
 
     </main>
   </div>
 
+  <!-- МОДАЛЬНОЕ ОКНО: АВТОРИЗАЦИЯ СТУДЕНТА -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Авторизация студента</h3>
+        <p>Курс «Линии связи и телекоммуникации»</p>
+      </div>
+      <form class="modal-body" id="authForm">
+        <p style="font-size: 12px; color: #475569; margin-bottom: 14px; line-height: 1.4;">
+          Введите Ваши данные. Они будут сохранены в браузере и отображаться в шапке портала при выполнении заданий.
+        </p>
+        <div class="modal-error" id="authError">Заполните все обязательные поля!</div>
+        <div class="modal-form-group">
+          <label>Фамилия *</label>
+          <input type="text" id="authLastName" class="modal-input" placeholder="Иванов" required>
+        </div>
+        <div class="modal-form-group">
+          <label>Имя *</label>
+          <input type="text" id="authFirstName" class="modal-input" placeholder="Иван" required>
+        </div>
+        <div class="modal-form-group">
+          <label>Учебная группа *</label>
+          <input type="text" id="authGroup" class="modal-input" placeholder="ИКС-21" required>
+        </div>
+        <button type="submit" class="btn-emerald" style="width: 100%; padding: 10px; justify-content: center; font-size: 13px;">
+          Сохранить и войти в систему
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО: ВВОД ПАРОЛЯ К ЭКЗАМЕНУ -->
+  <div class="modal-overlay" id="examPasswordModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Доступ к итоговому экзамену</h3>
+        <p>Раздел защищен преподавательским паролем</p>
+      </div>
+      <form class="modal-body" id="examPasswordForm">
+        <p style="font-size: 12px; color: #475569; margin-bottom: 14px; line-height: 1.4;">
+          Для открытия экзаменационного тестирования введите пароль доступа, выданный ведущим преподавателем.
+        </p>
+        <div class="modal-error" id="examPasswordError">Неверный пароль доступа! Обратитесь к преподавателю.</div>
+        <div class="modal-form-group">
+          <label>Пароль доступа:</label>
+          <input type="password" id="examPasswordInput" class="modal-input" placeholder="•••••" style="font-family: monospace; letter-spacing: 2px;" required>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button type="submit" class="btn-emerald" style="flex: 1; padding: 10px; justify-content: center;">
+            Войти в экзамен
+          </button>
+          <button type="button" id="cancelExamPasswordBtn" class="btn-secondary" style="padding: 10px 16px;">
+            Отмена
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    // Точные адреса всех 12 лекций курса
     const LECTURES = [
+      { id: 1, title: "Задачи вуза и введение в инфокоммуникации", relativePath: "./Lector1_zadachi_vuza/index1.html" },
+      { id: 2, title: "Организация учебного процесса и работы студентов", relativePath: "./Lector2_students/index2.html" },
+      { id: 3, title: "Телекоммуникации и инфокоммуникационные системы", relativePath: "./Lector3_telecom/index%203.html" },
+      { id: 4, title: "Сигналы электросвязи, спектры и характеристики", relativePath: "./Lector4_signals/index4.html" },
+      { id: 5, title: "Преобразователи сигналов и модуляция", relativePath: "./Lector5_converters/index5.html" },
+      { id: 6, title: "Линии связи: кабельные, волоконно-оптические и радио", relativePath: "./Lector6_lines/index6.html" },
+      { id: 7, title: "Системы передачи и технологии мультиплексирования", relativePath: "./Lector7_transmission/index7.html" },
+      { id: 8, title: "Коммутация каналов, сообщений и пакетов", relativePath: "./Lector8_switching/index8.html" },
+      { id: 9, title: "Сети передачи данных и сетевые архитектуры", relativePath: "./Lector9_network/index9.html" },
+      { id: 10, title: "Классификация и типы телекоммуникационных сетей", relativePath: "./Lector10_network_types/index10.html" },
+      { id: 11, title: "Основы мобильной и радиосвязи", relativePath: "./Lector11_mobile_comm/index11.html" },
+      { id: 12, title: "Современные стандарты сотовой связи и спутники", relativePath: "./Lector12_mobile_systems/index12.html" }
+    ];
+
+    const LABS = [
       {
-        id: 1,
-        title: "Задачи вуза и введение в инфокоммуникации",
-        folder: "Lector1_zadachi_vuza",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector1_zadachi_vuza/index1.html",
-        relativePath: "./Lector1_zadachi_vuza/index1.html",
-        durationMinutes: 45
+        id: "L1", type: "lab", num: 1, title: "Лабораторная работа №1", subtitle: "Первичные параметры направляющих линий", pdfFile: "L1.pdf",
+        calc: {
+          title: "Расчет волнового сопротивления коаксиальной линии",
+          description: "Рассчитайте теоретическое волновое сопротивление Z₀ коаксиального кабеля при заданных диаметрах проводников и диэлектрической проницаемости изоляции.",
+          fields: [
+            { id: "D", label: "Диаметр внешнего проводника (D)", unit: "мм", defaultValue: 7.2, step: 0.1 },
+            { id: "d", label: "Диаметр внутреннего проводника (d)", unit: "мм", defaultValue: 2.1, step: 0.1 },
+            { id: "eps", label: "Диэлектрическая проницаемость (εr)", unit: "", defaultValue: 2.25, step: 0.05 }
+          ],
+          formulaHint: "Z₀ = (60 / √εr) · ln(D / d) [Ом]"
+        },
+        quiz: [
+          {
+            question: "Что происходит с волновым сопротивлением коаксиальной линии при увеличении отношения D/d?",
+            options: ["Волновое сопротивление увеличивается", "Волновое сопротивление уменьшается", "Остается постоянным"],
+            correctIndex: 0,
+            explanation: "Z₀ прямо пропорционально логарифму отношения диаметров ln(D/d)."
+          }
+        ]
       },
       {
-        id: 2,
-        title: "Организация учебного процесса и работы студентов",
-        folder: "Lector2_students",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector2_students/index2.html",
-        relativePath: "./Lector2_students/index2.html",
-        durationMinutes: 45
+        id: "L2", type: "lab", num: 2, title: "Лабораторная работа №2", subtitle: "Затухание кабельных линий связи", pdfFile: "L2.pdf",
+        calc: {
+          title: "Расчет затухания кабельного тракта",
+          description: "Определите суммарное затухание тракта связи A (дБ) при известном километровом затухании α и длине линии L.",
+          fields: [
+            { id: "alpha", label: "Километровое затухание кабеля (α)", unit: "дБ/км", defaultValue: 1.8, step: 0.1 },
+            { id: "length", label: "Длина линии (L)", unit: "км", defaultValue: 12.5, step: 0.5 }
+          ],
+          formulaHint: "A = α · L [дБ]"
+        },
+        quiz: [
+          {
+            question: "Как изменяется коэффициент затухания медного кабеля при росте частоты f?",
+            options: ["Увеличивается пропорционально √f из-за скин-эффекта", "Уменьшается", "Не зависит от частоты"],
+            correctIndex: 0,
+            explanation: "Поверхностный эффект увеличивает активное сопротивление проводников с ростом частоты."
+          }
+        ]
       },
       {
-        id: 3,
-        title: "Телекоммуникации и инфокоммуникационные системы",
-        folder: "Lector3_telecom",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector3_telecom/index%203.html",
-        relativePath: "./Lector3_telecom/index%203.html",
-        durationMinutes: 50
+        id: "L3", type: "lab", num: 3, title: "Лабораторная работа №3", subtitle: "Оптический бюджет потерь в ВОЛС", pdfFile: "L3.pdf",
+        calc: {
+          title: "Расчет оптического бюджета мощности ВОЛС",
+          description: "Определите максимальную длину регенерационного участка Lmax по затуханию волокна с учетом потерь на соединениях.",
+          fields: [
+            { id: "Ptx", label: "Мощность передатчика (Pпер)", unit: "дБм", defaultValue: -3, step: 0.5 },
+            { id: "Prx", label: "Чувствительность приемника (Pпр)", unit: "дБм", defaultValue: -32, step: 0.5 },
+            { id: "alpha", label: "Затухание волокна (α)", unit: "дБ/км", defaultValue: 0.22, step: 0.02 },
+            { id: "conn", label: "Потери в разъемах и сварках", unit: "дБ", defaultValue: 1.5, step: 0.1 },
+            { id: "margin", label: "Эксплуатационный запас", unit: "дБ", defaultValue: 4.0, step: 0.5 }
+          ],
+          formulaHint: "Lmax = (Pпер - Pпр - Потери - Запас) / α [км]"
+        },
+        quiz: [
+          {
+            question: "В каком окне прозрачности стандартное волокно SMF имеет минимальное затухание?",
+            options: ["850 нм", "1310 нм", "1550 нм"],
+            correctIndex: 2,
+            explanation: "На длине волны 1550 нм затухание кварцевого волокна минимально (~0.2 дБ/км)."
+          }
+        ]
       },
       {
-        id: 4,
-        title: "Сигналы электросвязи, спектры и характеристики",
-        folder: "Lector4_signals",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector4_signals/index4.html",
-        relativePath: "./Lector4_signals/index4.html",
-        durationMinutes: 55
+        id: "L4", type: "lab", num: 4, title: "Лабораторная работа №4", subtitle: "Дисперсионные характеристики ВОЛС", pdfFile: "L4.pdf",
+        calc: {
+          title: "Расчет уширения импульса из-за хроматической дисперсии",
+          description: "Рассчитайте уширение оптического импульса Δτ при заданной дисперсии D, спектральной ширине источника Δλ и длине L.",
+          fields: [
+            { id: "Dchr", label: "Коэффициент дисперсии (D)", unit: "пс/(нм·км)", defaultValue: 17, step: 0.5 },
+            { id: "deltaLambda", label: "Ширина спектра источника (Δλ)", unit: "нм", defaultValue: 0.1, step: 0.05 },
+            { id: "L", label: "Длина линии (L)", unit: "км", defaultValue: 50, step: 5 }
+          ],
+          formulaHint: "Δτ = D · Δλ · L [пс]"
+        },
+        quiz: [
+          {
+            question: "К какому негативному эффекту приводит дисперсия в оптическом волокне?",
+            options: ["К межсимвольной интерференции (наложению соседних импульсов)", "К нагреву кабеля", "К изменению цвета кабеля"],
+            correctIndex: 0,
+            explanation: "Уширение импульсов вызывает перекрытие тактовых интервалов и битовые ошибки."
+          }
+        ]
       },
       {
-        id: 5,
-        title: "Преобразователи сигналов и модуляция",
-        folder: "Lector5_converters",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector5_converters/index5.html",
-        relativePath: "./Lector5_converters/index5.html",
-        durationMinutes: 50
+        id: "L5", type: "lab", num: 5, title: "Лабораторная работа №5", subtitle: "Цифровые тракты и мультиплексирование E1", pdfFile: "L5.pdf",
+        calc: {
+          title: "Расчет скорости потока E1 / ИКМ-30",
+          description: "Определите суммарную битовую скорость первичного потока E1 при 32 таймслотах.",
+          fields: [
+            { id: "slots", label: "Число таймслотов (N)", unit: "", defaultValue: 32, step: 1 },
+            { id: "bits", label: "Разрядность квантования (n)", unit: "бит", defaultValue: 8, step: 1 },
+            { id: "f_discr", label: "Частота дискретизации (f_д)", unit: "кГц", defaultValue: 8, step: 1 }
+          ],
+          formulaHint: "V = N · n · f_д = 32 · 8 · 8000 = 2048 кбит/с"
+        },
+        quiz: [
+          {
+            question: "Сколько речевых телефонных каналов передается в одном потоке E1?",
+            options: ["30 каналов (плюс 2 служебных)", "32 канала", "24 канала"],
+            correctIndex: 0,
+            explanation: "В потоке E1 30 каналов для речи, 0-й для цикловой синхронизации, 16-й для сигнализации."
+          }
+        ]
       },
       {
-        id: 6,
-        title: "Линии связи: кабельные, волоконно-оптические и беспроводные",
-        folder: "Lector6_lines",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector6_lines/index6.html",
-        relativePath: "./Lector6_lines/index6.html",
-        durationMinutes: 60
+        id: "L6", type: "lab", num: 6, title: "Лабораторная работа №6", subtitle: "Оптические разветвители и сети PON", pdfFile: "L6.pdf",
+        calc: {
+          title: "Расчет затухания оптического сплиттера 1:N",
+          description: "Рассчитайте полное затухание разветвителя 1:N с учетом коэффициента деления и избыточных потерь.",
+          fields: [
+            { id: "N", label: "Число выходов сплиттера (N)", unit: "", defaultValue: 32, step: 2 },
+            { id: "excess", label: "Избыточные потери сплиттера", unit: "дБ", defaultValue: 1.2, step: 0.1 }
+          ],
+          formulaHint: "A = 10 · lg(N) + αизб [дБ]"
+        },
+        quiz: [
+          {
+            question: "Какое теоретическое затухание вносит идеальный сплиттер 1:2?",
+            options: ["3 дБ (деление мощности пополам)", "1 дБ", "6 дБ"],
+            correctIndex: 0,
+            explanation: "10 · lg(2) ≈ 3.01 дБ."
+          }
+        ]
       },
       {
-        id: 7,
-        title: "Системы передачи и технологии мультиплексирования",
-        folder: "Lector7_transmission",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector7_transmission/index7.html",
-        relativePath: "./Lector7_transmission/index7.html",
-        durationMinutes: 55
-      },
-      {
-        id: 8,
-        title: "Коммутация каналов, сообщений и пакетов",
-        folder: "Lector8_switching",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector8_switching/index8.html",
-        relativePath: "./Lector8_switching/index8.html",
-        durationMinutes: 50
-      },
-      {
-        id: 9,
-        title: "Сети передачи данных и сетевые архитектуры",
-        folder: "Lector9_network",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector9_network/index9.html",
-        relativePath: "./Lector9_network/index9.html",
-        durationMinutes: 50
-      },
-      {
-        id: 10,
-        title: "Классификация и типы телекоммуникационных сетей",
-        folder: "Lector10_network_types",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector10_network_types/index10.html",
-        relativePath: "./Lector10_network_types/index10.html",
-        durationMinutes: 50
-      },
-      {
-        id: 11,
-        title: "Основы мобильной и радиосвязи",
-        folder: "Lector11_mobile_comm",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector11_mobile_comm/index11.html",
-        relativePath: "./Lector11_mobile_comm/index11.html",
-        durationMinutes: 55
-      },
-      {
-        id: 12,
-        title: "Современные стандарты сотовой связи и спутниковые системы",
-        folder: "Lector12_mobile_systems",
-        localPath: "file:///C:/Users/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80/Documents/GitHub/Kurs-lector-Linia/Lector12_mobile_systems/index12.html",
-        relativePath: "./Lector12_mobile_systems/index12.html",
-        durationMinutes: 60
+        id: "P1", type: "practice", num: 1, title: "Практическое занятие №1", subtitle: "Комплексный расчет участка ВОЛС", pdfFile: "P1.pdf",
+        calc: {
+          title: "Комплексный расчет участка ВОЛС (затухание и дисперсия)",
+          description: "Определите предельный регенерационный участок L = min(Lα, Ld).",
+          fields: [
+            { id: "budget", label: "Бюджет затухания (Адоп)", unit: "дБ", defaultValue: 25, step: 1 },
+            { id: "alpha", label: "Километровое затухание (α)", unit: "дБ/км", defaultValue: 0.25, step: 0.05 },
+            { id: "tauMax", label: "Допустимое уширение импульса", unit: "пс", defaultValue: 250, step: 25 },
+            { id: "dispK", label: "Дисперсионный множитель волокна", unit: "пс/км", defaultValue: 3.5, step: 0.5 }
+          ],
+          formulaHint: "Lα = Адоп / α,   Ld = τдоп / (D·Δλ),   L = min(Lα, Ld)"
+        },
+        quiz: [
+          {
+            question: "Что чаще всего ограничивает дальность передачи на скоростях 10-40 Гбит/с в волокне G.652?",
+            options: ["Хроматическая дисперсия", "Затухание сигнала", "Акустический шум"],
+            correctIndex: 0,
+            explanation: "На высоких скоростях импульсы ультракороткие и дисперсия наступает раньше предела затухания."
+          }
+        ]
       }
     ];
 
-    let currentLectureIndex = 0;
-    let urlMode = localStorage.getItem('lms_linia_url_mode') || 'local';
-    let completedLectures = JSON.parse(localStorage.getItem('lms_linia_completed') || '[]');
+    const ADDITIONAL = [
+      { fileName: "Lector_comm.pdf", title: "Коммутация и сетевые протоколы", description: "Пособие по пакетной и канальной коммутации в телекоммуникациях." },
+      { fileName: "Lector_kabel_ABC_АБТЦ.pdf", title: "Кабельные линии связи, АБЦ и АБТЦ", description: "Справочник по кабельным направляющим системам и автоблокировке." }
+    ];
 
-    const lectureList = document.getElementById('lectureList');
-    const lectureFrame = document.getElementById('lectureFrame');
-    const iframeLoader = document.getElementById('iframeLoader');
-    const currentNumBadge = document.getElementById('currentNumBadge');
-    const currentTitleText = document.getElementById('currentTitleText');
-    const currentUrlText = document.getElementById('currentUrlText');
-    const openExternalBtn = document.getElementById('openExternalBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const reloadBtn = document.getElementById('reloadBtn');
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
-    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    const KR = [
+      { fileName: "PRIMER_KR.pdf", title: "Пример выполнения КР", subtitle: "Образец оформления расчетов и диаграмм" },
+      { fileName: "ORAZEC_KR.pdf", title: "Образец титульного листа", subtitle: "Требования к оформлению по ГОСТ" },
+      { fileName: "ZKR26.pdf", title: "Задания на контрольную работу", subtitle: "Таблицы вариантов исходных данных" }
+    ];
+
+    const EXAM_PASS = "75275";
+    const EXAM_URL = "https://forms.gle/HSqLZmvRWAeVeZsq9";
+
+    let currentView = 'lecture';
+    let currentLectureIdx = 0;
+    let currentLabIdx = 0;
+    let isExamUnlocked = sessionStorage.getItem('lms_exam_unlocked') === 'true';
+
+    let studentProfile = null;
+    try {
+      studentProfile = JSON.parse(localStorage.getItem('lms_student_profile'));
+    } catch(e) {}
+
+    const headerStudentAvatar = document.getElementById('headerStudentAvatar');
+    const headerStudentName = document.getElementById('headerStudentName');
+    const headerStudentGroup = document.getElementById('headerStudentGroup');
+    const openAuthModalBtn = document.getElementById('openAuthModalBtn');
+    const authModal = document.getElementById('authModal');
+    const authForm = document.getElementById('authForm');
+    const authLastName = document.getElementById('authLastName');
+    const authFirstName = document.getElementById('authFirstName');
+    const authGroup = document.getElementById('authGroup');
+    const authError = document.getElementById('authError');
+
+    const examPasswordModal = document.getElementById('examPasswordModal');
+    const examPasswordForm = document.getElementById('examPasswordForm');
+    const examPasswordInput = document.getElementById('examPasswordInput');
+    const examPasswordError = document.getElementById('examPasswordError');
+    const cancelExamPasswordBtn = document.getElementById('cancelExamPasswordBtn');
+    const examLockIcon = document.getElementById('examLockIcon');
+    const lockExamBtn = document.getElementById('lockExamBtn');
+
+    const contentToolbarTitle = document.getElementById('contentToolbarTitle');
     const sidebar = document.getElementById('sidebar');
-    const searchInput = document.getElementById('searchInput');
-    const resetProgressBtn = document.getElementById('resetProgressBtn');
-    const markCompleteBtn = document.getElementById('markCompleteBtn');
-    const markCompleteBtnText = document.getElementById('markCompleteBtnText');
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const urlModeSelect = document.getElementById('urlModeSelect');
+    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
 
-    urlModeSelect.value = urlMode;
+    const views = {
+      lecture: document.getElementById('lectureViewContainer'),
+      lab: document.getElementById('labSplitViewContainer'),
+      additional: document.getElementById('additionalViewContainer'),
+      kr: document.getElementById('krViewContainer'),
+      exam: document.getElementById('examViewContainer')
+    };
 
-    function renderLectureList(filterText = '') {
-      lectureList.innerHTML = '';
-      const query = filterText.trim().toLowerCase();
+    function updateStudentUI() {
+      if (studentProfile && studentProfile.lastName && studentProfile.firstName) {
+        headerStudentAvatar.textContent = studentProfile.lastName.charAt(0).toUpperCase();
+        headerStudentName.textContent = studentProfile.lastName + ' ' + studentProfile.firstName;
+        headerStudentGroup.textContent = 'Группа: ' + (studentProfile.group || '—');
+      } else {
+        headerStudentAvatar.textContent = '?';
+        headerStudentName.textContent = 'Авторизация';
+        headerStudentGroup.textContent = 'Укажите ФИО и группу';
+        authModal.classList.add('active');
+      }
+    }
 
-      LECTURES.forEach((lecture, index) => {
-        if (query && !lecture.title.toLowerCase().includes(query)) return;
+    const lecturesNavList = document.getElementById('lecturesNavList');
+    LECTURES.forEach((lec, idx) => {
+      const item = document.createElement('div');
+      item.className = 'nav-item' + (idx === 0 ? ' active' : '');
+      item.innerHTML = '<div class="nav-item-badge">' + lec.id + '</div><span class="nav-item-text">' + lec.title + '</span>';
+      item.addEventListener('click', () => {
+        switchView('lecture');
+        loadLecture(idx);
+      });
+      lecturesNavList.appendChild(item);
+    });
 
-        const isCurrent = index === currentLectureIndex;
-        const isCompleted = completedLectures.includes(lecture.id);
+    const labsNavList = document.getElementById('labsNavList');
+    LABS.forEach((lab, idx) => {
+      const item = document.createElement('div');
+      item.className = 'nav-item';
+      item.innerHTML = '<div class="nav-item-badge">' + lab.id + '</div><span class="nav-item-text">' + lab.title + '</span>';
+      item.addEventListener('click', () => {
+        switchView('lab');
+        loadLab(idx);
+      });
+      labsNavList.appendChild(item);
+    });
 
-        const item = document.createElement('div');
-        item.className = 'lecture-item' + (isCurrent ? ' active' : '');
-        item.innerHTML = `
-          <div class="lecture-item-num">${lecture.id}</div>
-          <div class="lecture-item-info">
-            <div class="lecture-item-title">${lecture.title}</div>
-            <div class="lecture-item-meta">
-              <span>${lecture.durationMinutes} мин</span>
-              <span>·</span>
-              <span>${lecture.folder}</span>
-            </div>
-          </div>
-          <button class="check-btn ${isCompleted ? 'completed' : ''}" title="${isCompleted ? 'Изучено' : 'Отметить как изученное'}">
-            ${isCompleted 
-              ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>' 
-              : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg>'
-            }
-          </button>
-        `;
+    document.querySelector('.nav-item[data-view="additional"]').addEventListener('click', () => {
+      switchView('additional');
+      loadAdditional(0);
+    });
 
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.check-btn')) return;
-          loadLecture(index);
-          if (window.innerWidth <= 900) {
-            sidebar.classList.remove('open');
-          }
-        });
+    document.querySelector('.nav-item[data-view="kr"]').addEventListener('click', () => {
+      switchView('kr');
+      loadKr(0);
+    });
 
-        const checkBtn = item.querySelector('.check-btn');
-        checkBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggleComplete(lecture.id);
-        });
+    const examNavItem = document.getElementById('examNavItem');
+    examNavItem.addEventListener('click', () => {
+      if (isExamUnlocked) {
+        switchView('exam');
+        loadExam();
+      } else {
+        examPasswordError.style.display = 'none';
+        examPasswordInput.value = '';
+        examPasswordModal.classList.add('active');
+      }
+    });
 
-        lectureList.appendChild(item);
+    function switchView(viewName) {
+      currentView = viewName;
+      Object.keys(views).forEach(k => views[k].classList.remove('active'));
+      if (views[viewName]) views[viewName].classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(it => it.classList.remove('active'));
+      if (window.innerWidth <= 900) sidebar.classList.remove('open');
+    }
+
+    function loadLecture(idx) {
+      currentLectureIdx = idx;
+      const lec = LECTURES[idx];
+      contentToolbarTitle.innerHTML = '<span>Тема ' + lec.id + '. ' + lec.title + '</span>';
+      document.getElementById('lectureFrame').src = lec.relativePath;
+      const items = lecturesNavList.querySelectorAll('.nav-item');
+      items.forEach((it, i) => {
+        if (i === idx) it.classList.add('active');
+        else it.classList.remove('active');
       });
     }
 
-    function loadLecture(index) {
-      if (index < 0 || index >= LECTURES.length) return;
-      currentLectureIndex = index;
-      const lecture = LECTURES[index];
+    function loadLab(idx) {
+      currentLabIdx = idx;
+      const lab = LABS[idx];
+      contentToolbarTitle.innerHTML = '<span>' + lab.title + ' (' + lab.id + '): ' + lab.subtitle + '</span>';
 
-      const targetUrl = urlMode === 'local' ? lecture.localPath : lecture.relativePath;
+      document.getElementById('labPdfTitle').textContent = lab.pdfFile + ' — ' + lab.title;
+      document.getElementById('labPdfExternalBtn').href = './' + lab.pdfFile;
+      document.getElementById('labPdfDownloadBtn').href = './' + lab.pdfFile;
+      document.getElementById('labPdfDownloadBtn').setAttribute('download', lab.pdfFile);
+      document.getElementById('labPdfFrame').src = './' + lab.pdfFile + '#toolbar=1';
 
-      currentNumBadge.textContent = 'Тема ' + lecture.id;
-      currentTitleText.textContent = lecture.title;
-      currentUrlText.textContent = targetUrl;
-      openExternalBtn.href = targetUrl;
+      document.getElementById('calcPanelTitle').textContent = lab.calc.title;
+      document.getElementById('calcPanelDesc').textContent = lab.calc.description;
+      document.getElementById('formulaBox').textContent = lab.calc.formulaHint;
+      document.getElementById('formulaBox').style.display = 'none';
+      document.getElementById('calcStatusBox').style.display = 'none';
+      document.getElementById('studentCalcInput').value = '';
 
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === LECTURES.length - 1;
-      prevBtn.style.opacity = index === 0 ? '0.5' : '1';
-      nextBtn.style.opacity = index === LECTURES.length - 1 ? '0.5' : '1';
+      const fieldsContainer = document.getElementById('calcFieldsContainer');
+      fieldsContainer.innerHTML = '';
+      lab.calc.fields.forEach(f => {
+        const row = document.createElement('div');
+        row.className = 'calc-input-row';
+        row.innerHTML = '<label>' + f.label + ':</label>' +
+          '<input type="number" step="' + (f.step || 0.1) + '" id="calc_inp_' + f.id + '" value="' + f.defaultValue + '" class="calc-input-field">' +
+          '<span class="calc-unit">' + f.unit + '</span>';
+        fieldsContainer.appendChild(row);
+      });
 
-      updateCompleteButtonState(lecture.id);
+      const quizContainer = document.getElementById('quizContainer');
+      quizContainer.innerHTML = '';
+      lab.quiz.forEach((q, qIdx) => {
+        const box = document.createElement('div');
+        box.className = 'quiz-question-box';
+        box.innerHTML = '<div class="quiz-q-title">' + (qIdx + 1) + '. ' + q.question + '</div>';
 
-      iframeLoader.classList.add('active');
-      lectureFrame.src = targetUrl;
+        q.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-option-btn';
+          btn.innerHTML = '<b style="min-width: 14px;">' + String.fromCharCode(65 + optIdx) + '.</b> <span>' + opt + '</span>';
+          btn.addEventListener('click', () => {
+            const isCorrect = optIdx === q.correctIndex;
+            box.querySelectorAll('.quiz-option-btn').forEach((b, i) => {
+              b.classList.remove('selected-correct', 'selected-wrong');
+              if (i === q.correctIndex) b.classList.add('selected-correct');
+              else if (i === optIdx && !isCorrect) b.classList.add('selected-wrong');
+            });
+            let fb = box.querySelector('.quiz-feedback');
+            if (!fb) {
+              fb = document.createElement('div');
+              fb.className = 'quiz-feedback';
+              box.appendChild(fb);
+            }
+            fb.style.display = 'block';
+            fb.style.background = isCorrect ? '#ecfdf5' : '#fef2f2';
+            fb.style.color = isCorrect ? '#065f46' : '#991b1b';
+            fb.innerHTML = '<b>' + (isCorrect ? 'Верно!' : 'Неверно.') + '</b> ' + q.explanation;
+          });
+          box.appendChild(btn);
+        });
 
-      lectureFrame.onload = () => {
-        iframeLoader.classList.remove('active');
-      };
+        quizContainer.appendChild(box);
+      });
 
-      setTimeout(() => {
-        iframeLoader.classList.remove('active');
-      }, 1200);
-
-      renderLectureList(searchInput.value);
+      const items = labsNavList.querySelectorAll('.nav-item');
+      items.forEach((it, i) => {
+        if (i === idx) it.classList.add('active');
+        else it.classList.remove('active');
+      });
     }
 
-    function toggleComplete(lectureId) {
-      if (completedLectures.includes(lectureId)) {
-        completedLectures = completedLectures.filter(id => id !== lectureId);
-      } else {
-        completedLectures.push(lectureId);
+    document.getElementById('checkCalcBtn').addEventListener('click', () => {
+      const lab = LABS[currentLabIdx];
+      const studentVal = parseFloat(document.getElementById('studentCalcInput').value.replace(',', '.'));
+      const statusBox = document.getElementById('calcStatusBox');
+
+      if (isNaN(studentVal)) {
+        alert('Пожалуйста, введите числовое значение.');
+        return;
       }
-      localStorage.setItem('lms_linia_completed', JSON.stringify(completedLectures));
-      updateProgress();
-      updateCompleteButtonState(LECTURES[currentLectureIndex].id);
-      renderLectureList(searchInput.value);
-    }
 
-    function updateCompleteButtonState(lectureId) {
-      const isCompleted = completedLectures.includes(lectureId);
-      if (isCompleted) {
-        markCompleteBtn.className = 'btn btn-primary';
-        markCompleteBtnText.textContent = 'Изучено ✓';
-      } else {
-        markCompleteBtn.className = 'btn';
-        markCompleteBtnText.textContent = 'Отметить изученной';
+      const inputs = {};
+      lab.calc.fields.forEach(f => {
+        const el = document.getElementById('calc_inp_' + f.id);
+        inputs[f.id] = el ? parseFloat(el.value) : f.defaultValue;
+      });
+
+      let expectedVal = 0;
+      let unit = '';
+      if (lab.id === 'L1') {
+        expectedVal = (60 / Math.sqrt(inputs.eps || 2.25)) * Math.log((inputs.D || 7.2) / (inputs.d || 2.1));
+        unit = 'Ом';
+      } else if (lab.id === 'L2') {
+        expectedVal = (inputs.alpha || 1.8) * (inputs.length || 12.5);
+        unit = 'дБ';
+      } else if (lab.id === 'L3') {
+        expectedVal = ((inputs.Ptx ?? -3) - (inputs.Prx ?? -32) - (inputs.conn || 1.5) - (inputs.margin || 4.0)) / (inputs.alpha || 0.22);
+        unit = 'км';
+      } else if (lab.id === 'L4') {
+        expectedVal = (inputs.Dchr || 17) * (inputs.deltaLambda || 0.1) * (inputs.L || 50);
+        unit = 'пс';
+      } else if (lab.id === 'L5') {
+        expectedVal = (inputs.slots || 32) * (inputs.bits || 8) * (inputs.f_discr || 8);
+        unit = 'кбит/с';
+      } else if (lab.id === 'L6') {
+        expectedVal = 10 * Math.log10(inputs.N || 32) + (inputs.excess || 1.2);
+        unit = 'дБ';
+      } else if (lab.id === 'P1') {
+        expectedVal = Math.min((inputs.budget || 25) / (inputs.alpha || 0.25), (inputs.tauMax || 250) / (inputs.dispK || 3.5));
+        unit = 'км';
       }
+
+      const tolerance = Math.max(0.1, Math.abs(expectedVal) * 0.025);
+      const diff = Math.abs(studentVal - expectedVal);
+
+      statusBox.style.display = 'block';
+      if (diff <= tolerance) {
+        statusBox.className = 'calc-result-box correct';
+        statusBox.innerHTML = '<b>✅ Расчет верен!</b> Погрешность ' + ((diff / (expectedVal || 1)) * 100).toFixed(2) + '%. Эталон: ' + expectedVal.toFixed(2) + ' ' + unit + '.';
+      } else {
+        statusBox.className = 'calc-result-box wrong';
+        statusBox.innerHTML = '<b>❌ Ошибка в расчете:</b> Ваш результат ' + studentVal + ' ' + unit + ', а формула дает ~' + expectedVal.toFixed(2) + ' ' + unit + '. Проверьте вычисления.';
+      }
+    });
+
+    document.getElementById('toggleFormulaBtn').addEventListener('click', () => {
+      const fb = document.getElementById('formulaBox');
+      fb.style.display = fb.style.display === 'none' ? 'block' : 'none';
+    });
+
+    function loadAdditional(idx) {
+      const mat = ADDITIONAL[idx];
+      contentToolbarTitle.innerHTML = '<span>Дополнительные материалы: ' + mat.title + '</span>';
+      document.getElementById('additionalPdfTitle').textContent = mat.fileName;
+      document.getElementById('additionalPdfExternalBtn').href = './' + mat.fileName;
+      document.getElementById('additionalPdfDownloadBtn').href = './' + mat.fileName;
+      document.getElementById('additionalPdfDownloadBtn').setAttribute('download', mat.fileName);
+      document.getElementById('additionalPdfFrame').src = './' + mat.fileName + '#toolbar=1';
+
+      const container = document.getElementById('additionalListCards');
+      container.innerHTML = '';
+      ADDITIONAL.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.style.padding = '12px';
+        card.style.background = i === idx ? '#ecfdf5' : '#ffffff';
+        card.style.border = '1px solid ' + (i === idx ? '#059669' : '#e2e8f0');
+        card.style.borderRadius = '8px';
+        card.style.cursor = 'pointer';
+        card.innerHTML = '<div style="font-size: 12px; font-weight: 700; color: #064e3b; margin-bottom: 2px;">' + item.title + '</div>' +
+          '<div style="font-size: 11px; color: #64748b; margin-bottom: 6px;">' + item.description + '</div>' +
+          '<a href="./' + item.fileName + '" download class="btn-emerald" style="padding: 4px 10px; font-size: 11px;">Скачать ' + item.fileName + '</a>';
+        card.addEventListener('click', (e) => {
+          if (!e.target.closest('a')) loadAdditional(i);
+        });
+        container.appendChild(card);
+      });
+
+      document.querySelector('.nav-item[data-view="additional"]').classList.add('active');
     }
 
-    function updateProgress() {
-      const total = LECTURES.length;
-      const count = completedLectures.length;
-      const percent = Math.round((count / total) * 100);
+    function loadKr(idx) {
+      const mat = KR[idx];
+      contentToolbarTitle.innerHTML = '<span>Контрольная работа: ' + mat.title + '</span>';
+      document.getElementById('krPdfTitle').textContent = mat.fileName;
+      document.getElementById('krPdfExternalBtn').href = './' + mat.fileName;
+      document.getElementById('krPdfDownloadBtn').href = './' + mat.fileName;
+      document.getElementById('krPdfDownloadBtn').setAttribute('download', mat.fileName);
+      document.getElementById('krPdfFrame').src = './' + mat.fileName + '#toolbar=1';
 
-      progressBar.style.width = percent + '%';
-      progressText.textContent = count + ' / ' + total + ' изучено (' + percent + '%)';
+      const container = document.getElementById('krListCards');
+      container.innerHTML = '';
+      KR.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.style.padding = '10px 12px';
+        card.style.background = i === idx ? '#ecfdf5' : '#ffffff';
+        card.style.border = '1px solid ' + (i === idx ? '#059669' : '#e2e8f0');
+        card.style.borderRadius = '8px';
+        card.style.cursor = 'pointer';
+        card.innerHTML = '<div style="font-size: 12px; font-weight: 700; color: #064e3b;">' + item.title + '</div>' +
+          '<div style="font-size: 11px; color: #64748b;">' + item.subtitle + '</div>';
+        card.addEventListener('click', () => loadKr(i));
+        container.appendChild(card);
+      });
+
+      document.querySelector('.nav-item[data-view="kr"]').classList.add('active');
     }
 
-    prevBtn.addEventListener('click', () => {
-      if (currentLectureIndex > 0) loadLecture(currentLectureIndex - 1);
+    function loadExam() {
+      contentToolbarTitle.innerHTML = '<span>Экзамен: Итоговое тестирование курса</span>';
+      document.getElementById('examFrame').src = EXAM_URL;
+      document.getElementById('examNavItem').classList.add('active');
+      examLockIcon.textContent = '🔓';
+    }
+
+    examPasswordForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (examPasswordInput.value.trim() === EXAM_PASS) {
+        isExamUnlocked = true;
+        sessionStorage.setItem('lms_exam_unlocked', 'true');
+        examPasswordModal.classList.remove('active');
+        switchView('exam');
+        loadExam();
+      } else {
+        examPasswordError.style.display = 'block';
+      }
     });
 
-    nextBtn.addEventListener('click', () => {
-      if (currentLectureIndex < LECTURES.length - 1) loadLecture(currentLectureIndex + 1);
+    cancelExamPasswordBtn.addEventListener('click', () => {
+      examPasswordModal.classList.remove('active');
     });
 
-    reloadBtn.addEventListener('click', () => {
-      iframeLoader.classList.add('active');
-      lectureFrame.src = lectureFrame.src;
+    lockExamBtn.addEventListener('click', () => {
+      isExamUnlocked = false;
+      sessionStorage.removeItem('lms_exam_unlocked');
+      examLockIcon.textContent = '🔒';
+      switchView('lecture');
+      loadLecture(0);
     });
 
-    markCompleteBtn.addEventListener('click', () => {
-      toggleComplete(LECTURES[currentLectureIndex].id);
+    openAuthModalBtn.addEventListener('click', () => {
+      if (studentProfile) {
+        authLastName.value = studentProfile.lastName || '';
+        authFirstName.value = studentProfile.firstName || '';
+        authGroup.value = studentProfile.group || '';
+      }
+      authError.style.display = 'none';
+      authModal.classList.add('active');
     });
 
-    fullscreenBtn.addEventListener('click', () => {
-      document.body.classList.toggle('is-fullscreen');
+    authForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const ln = authLastName.value.trim();
+      const fn = authFirstName.value.trim();
+      const gr = authGroup.value.trim();
+      if (!ln || !fn || !gr) {
+        authError.style.display = 'block';
+        return;
+      }
+      studentProfile = { lastName: ln, firstName: fn, group: gr };
+      localStorage.setItem('lms_student_profile', JSON.stringify(studentProfile));
+      authModal.classList.remove('active');
+      updateStudentUI();
     });
 
     sidebarToggleBtn.addEventListener('click', () => {
       sidebar.classList.toggle('open');
     });
 
-    searchInput.addEventListener('input', (e) => {
-      renderLectureList(e.target.value);
-    });
-
-    resetProgressBtn.addEventListener('click', () => {
-      if (confirm('Сбросить весь сохраненный прогресс изучения лекций?')) {
-        completedLectures = [];
-        localStorage.removeItem('lms_linia_completed');
-        updateProgress();
-        updateCompleteButtonState(LECTURES[currentLectureIndex].id);
-        renderLectureList(searchInput.value);
-      }
-    });
-
-    urlModeSelect.addEventListener('change', (e) => {
-      urlMode = e.target.value;
-      localStorage.setItem('lms_linia_url_mode', urlMode);
-      loadLecture(currentLectureIndex);
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      if (e.key === 'ArrowLeft') {
-        if (currentLectureIndex > 0) loadLecture(currentLectureIndex - 1);
-      } else if (e.key === 'ArrowRight') {
-        if (currentLectureIndex < LECTURES.length - 1) loadLecture(currentLectureIndex + 1);
-      } else if (e.key === 'Escape' && document.body.classList.contains('is-fullscreen')) {
-        document.body.classList.remove('is-fullscreen');
-      }
-    });
-
-    updateProgress();
-    renderLectureList();
+    updateStudentUI();
     loadLecture(0);
   </script>
 </body>
