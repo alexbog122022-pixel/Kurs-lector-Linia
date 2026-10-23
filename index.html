@@ -5330,7 +5330,7 @@
       updateTotalProgress();
       updateGradebookUI();
 
-      const apiUrl = 'https://script.google.com/macros/s/AKfycbxYqOjf2PqsG66QCQOi8IqPiZ3w2ipbXkj6nAfQi8ziBH9RaKlBEFF86RfcSc60G0JUeA/exec';
+      const apiUrl = EXAM_CONFIG.apiScriptUrl;
       const payload = {
         fio: fio,
         email: email,
