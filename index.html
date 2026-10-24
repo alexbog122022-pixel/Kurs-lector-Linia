@@ -5349,15 +5349,20 @@
           body: JSON.stringify(payload)
         });
 
-        const data = await response.json().catch(() => null);
+                const data = await response.json().catch(() => null);
         document.getElementById('finalExamSubmittingBox').style.display = 'none';
 
         if (data && data.success === false && data.error) {
           document.getElementById('finalExamServerErrorBox').style.display = 'block';
           document.getElementById('finalExamServerErrorMessage').textContent = data.error;
+          
+          // Прячем кнопку пересдачи, если сервер сказал, что попытки кончились
+          const retakeBtn = document.getElementById('retakeFinalExamBtn');
+          if (retakeBtn) retakeBtn.style.display = 'none';
         }
 
-        renderFinalExamResult(fio, email, correctCount, (data && data.grade) ? data.grade : grade);
+        // Передаем номер попытки, который вернул сервер (если он есть)
+        renderFinalExamResult(fio, email, correctCount, (data && data.grade) ? data.grade : grade, data ? data.attempt : 1);
       } catch (err) {
         // Резервная отправка с mode: 'no-cors', если в браузере сработала строгая политика CORS
         try {
@@ -5376,23 +5381,23 @@
       }
     }
 
-    function renderFinalExamResult(fio, email, correctCount, grade) {
+    function renderFinalExamResult(fio, email, correctCount, grade, attemptNumber = 1) {
       const isPassed = correctCount >= 25;
       const box = document.getElementById('finalExamSuccessBox');
       const icon = document.getElementById('finalExamResultIcon');
       const title = document.getElementById('finalExamResultTitle');
       const subtitle = document.getElementById('finalExamResultSubtitle');
       const gradeEl = document.getElementById('resFinalGrade');
+      const retakeBtn = document.getElementById('retakeFinalExamBtn');
 
       if (!box) return;
 
       box.style.display = 'block';
 
       if (isPassed) {
-        // Успешная сдача (score >= 25: Отлично, Хорошо, Удовлетворительно)
+        // Успешная сдача
         box.style.border = '2px solid #059669';
-                const retakeBtn = document.getElementById('retakeFinalExamBtn');
-        if (retakeBtn) retakeBtn.style.display = 'none';
+        if (retakeBtn) retakeBtn.style.display = 'none'; 
         if (icon) {
           icon.textContent = '✓';
           icon.style.background = '#ecfdf5';
@@ -5406,11 +5411,9 @@
         if (subtitle) {
           subtitle.textContent = 'Результаты зафиксированы в институте и прикреплены к ведомости студента';
         }
-        if (gradeEl) {
-          gradeEl.style.color = '#059669';
-        }
+        if (gradeEl) gradeEl.style.color = '#059669';
       } else {
-        // Не сдан (score < 25: Неудовлетворительно)
+        // Не сдан
         box.style.border = '2px solid #dc2626';
         if (icon) {
           icon.textContent = '✕';
@@ -5422,24 +5425,26 @@
           title.textContent = 'Экзамен не сдан (Неудовлетворительно)';
           title.style.color = '#dc2626';
         }
-        if (subtitle) {
-          subtitle.textContent = 'Вы набрали недостаточное количество баллов. Пожалуйста, повторите материал и попробуйте снова';
-        }
-        if (gradeEl) {
-          gradeEl.style.color = '#dc2626';
-        }
+        if (gradeEl) gradeEl.style.color = '#dc2626';
         
-        // Показываем кнопку пересдачи
-        const retakeBtn = document.getElementById('retakeFinalExamBtn');
-        if (retakeBtn) retakeBtn.style.display = 'inline-flex';
+        // ЛОГИКА ОГРАНИЧЕНИЯ ПОПЫТОК
+        if (retakeBtn) {
+          if (attemptNumber < 2) {
+            // 1-я попытка: показываем кнопку
+            retakeBtn.style.display = 'inline-flex';
+            if (subtitle) subtitle.textContent = 'Вы набрали недостаточное количество баллов. У вас есть еще 1 попытка.';
+          } else {
+            // 2-я попытка: скрываем кнопку
+            retakeBtn.style.display = 'none';
+            if (subtitle) subtitle.textContent = 'Вы набрали недостаточное количество баллов. Вы использовали все 2 попытки.';
+          }
+        }
       }
 
       document.getElementById('resFinalFio').textContent = fio;
       document.getElementById('resFinalEmail').textContent = email;
       document.getElementById('resFinalScore').textContent = correctCount + ' из 30 (' + Math.round((correctCount / 30) * 100) + '%)';
-      if (gradeEl) {
-        gradeEl.textContent = grade;
-      }
+      if (gradeEl) gradeEl.textContent = grade;
     }
     document.getElementById('retakeFinalExamBtn').addEventListener('click', () => {
       document.getElementById('examResultScreen').style.display = 'none';
